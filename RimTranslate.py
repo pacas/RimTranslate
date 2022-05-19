@@ -75,7 +75,7 @@ labels = [
     'letterText',
     'pawnLabel',
     'pawnsPlural',
-    'rulesStrings',         # hard one
+    'rulesStrings',
     'recoveryMessage',
     'reportString',
     'skillLabel',
@@ -90,6 +90,8 @@ labels = [
     'baseDescription',
     'letter',
     'summary',
+    'deathmessage',
+    'reportstring',
 ]
 
 defNames = [
