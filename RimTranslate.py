@@ -59,8 +59,11 @@ if args.output_dir:
 
 
 labels = [
+    'baseDescription',
     'beginLetter',
     'beginLetterLabel',
+    'customlabel',
+    'deathmessage',
     'description',
     'fixedName',
     'gerund',
@@ -69,29 +72,27 @@ labels = [
     'ingestCommandString',
     'ingestReportString',
     'inspectLine',
+    'jobString',
     'label',
     'labelShort',
+    'leaderTitle',
+    'letter',
     'letterLabel',
     'letterText',
     'pawnLabel',
+    'pawnSingular',
     'pawnsPlural',
     'rulesStrings',
     'recoveryMessage',
     'reportString',
+    'reportstring',
     'skillLabel',
+    'summary',
     'text',
-    'useLabel',
-    'verb',
-    # new additions
-    'jobString',
-    'customlabel',
     'title',
     'titleShort',
-    'baseDescription',
-    'letter',
-    'summary',
-    'deathmessage',
-    'reportstring',
+    'useLabel',
+    'verb',
 ]
 
 defNames = [
@@ -120,7 +121,7 @@ def create_pot_file_from_keyed(filename, compendium=False):
     else:
         basefile = filename.split(args.source_dir, 1)[1]
 
-    po_file = polib.POFile()
+    po_file = polib.POFile(encoding="utf-8")
     # Edit this if you want
     po_file.metadata = {
         'POT-Creation-Date': str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M")),
@@ -150,7 +151,7 @@ def create_pot_file_from_keyed(filename, compendium=False):
 def create_pot_file_from_def(filename):
     """Create POT file (only source strings exists) from given filename"""
     doc = etree.parse(filename)
-    po_file = polib.POFile()
+    po_file = polib.POFile(encoding="utf-8")
     basefile = filename.split(args.source_dir, 1)[1]
     # And here too
     po_file.metadata = {
@@ -226,7 +227,7 @@ def create_languagedata_xml_file(po_file):
 if args.compendium:
     logging.info('Creating compendium from already exist DefInj XML files')
     if os.path.isdir(args.compendium):
-        compendium = polib.POFile()
+        compendium = polib.POFile(encoding="utf-8")
         for root, dirs, files in os.walk(args.compendium):
             for file in files:
                 if file.endswith('.xml'):
